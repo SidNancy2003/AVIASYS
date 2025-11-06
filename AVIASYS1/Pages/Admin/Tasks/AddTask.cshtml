@@ -1,0 +1,38 @@
+﻿@page
+@model AVIASYS1.Pages.Admin.Tasks.AddTaskModel
+@{
+    ViewData["Title"] = "Создание задачи";
+}
+
+<h2>Создание задачи</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label">Название</label>
+        <input asp-for="Task.Title" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Описание</label>
+        <textarea asp-for="Task.Description" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Ответственный (только руководитель)</label>
+        <select asp-for="Task.AssignedEmployeeId" class="form-select">
+            <option value="">Не назначен</option>
+            @foreach (var e in Model.Managers)
+            {
+                <option value="@e.Id">@e.FullName</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Срок выполнения</label>
+        <input asp-for="Task.Deadline" type="date" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Создать</button>
+    <a asp-page="Tasks" class="btn btn-secondary">Отмена</a>
+</form>

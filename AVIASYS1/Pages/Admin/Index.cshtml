@@ -1,0 +1,17 @@
+﻿@page
+@model AVIASYS1.Pages.Admin.IndexModel
+@{
+    ViewData["Title"] = "Главное меню администратора";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="list-group">
+    <a class="list-group-item list-group-item-action" asp-page="/Admin/Employees/Employees">Управление сотрудниками</a>
+    <a class="list-group-item list-group-item-action" asp-page="/Admin/Workshops/Workshops">Управление цехами</a>
+    <a class="list-group-item list-group-item-action" asp-page="/Admin/Tasks/Tasks">Управление задачами</a>
+</div>
+
+<div class="mt-4">
+    <a href="/Auth?handler=Logout" class="btn btn-danger">Выйти из системы</a>
+</div>

@@ -1,0 +1,33 @@
+﻿@page
+@model AVIASYS1.Pages.Admin.Workshops.AddWorkshopModel
+@{
+    ViewData["Title"] = "Создание цеха";
+}
+
+<h2>Создать цех</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label">Название</label>
+        <input asp-for="Workshop.Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Описание</label>
+        <textarea asp-for="Workshop.Description" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Руководитель</label>
+        <select asp-for="Workshop.ManagerId" class="form-select">
+            <option value="">Без руководителя</option>
+            @foreach (var m in Model.Managers)
+            {
+                <option value="@m.Id">@m.FullName</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Создать</button>
+    <a asp-page="Workshops" class="btn btn-secondary">Отмена</a>
+</form>

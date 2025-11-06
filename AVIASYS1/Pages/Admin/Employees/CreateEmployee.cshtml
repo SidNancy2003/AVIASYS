@@ -1,0 +1,47 @@
+﻿@page
+@model AVIASYS1.Pages.Admin.Employees.CreateEmployeeModel
+@{
+    ViewData["Title"] = "Создание сотрудника";
+}
+
+<h2>Создание сотрудника</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label">ФИО</label>
+        <input asp-for="Employee.FullName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Логин</label>
+        <input asp-for="Employee.Login" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Пароль</label>
+        <input asp-for="Employee.Password" type="password" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Роль</label>
+        <select asp-for="Employee.Role" class="form-select">
+            <option value="Employee">Сотрудник</option>
+            <option value="Manager">Руководитель</option>
+            <option value="Admin">Администратор</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Цех</label>
+        <select asp-for="Employee.WorkshopId" class="form-select">
+            <option value="">Без цеха</option>
+            @foreach (var w in Model.Workshops)
+            {
+                <option value="@w.Id">@w.Name</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Создать</button>
+    <a asp-page="Employees" class="btn btn-secondary">Отмена</a>
+</form>

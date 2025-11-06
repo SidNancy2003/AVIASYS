@@ -1,0 +1,37 @@
+﻿@page
+@model AVIASYS1.Pages.IndexModel
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<div class="container text-center">
+    <h1>AVIASYS</h1>
+    <p>Система управления авиастроительным предприятием</p>
+
+    @if (!string.IsNullOrEmpty(Model.UserName))
+    {
+        <div class="alert alert-info">
+            Вы вошли как: <strong>@Model.UserName</strong> (@Model.UserRole)
+            <div class="mt-2">
+                <a href="/Auth?handler=Logout" class="btn btn-outline-danger btn-sm">🚪 Выйти</a>
+            </div>
+        </div>
+
+        @if (Model.UserRole == "Admin")
+        {
+            <a href="/Admin/Index" class="btn btn-primary btn-lg">Перейти в панель администратора</a>
+        }
+        else
+        {
+            <a href="/Employee/Index" class="btn btn-primary btn-lg">Перейти в панель сотрудника</a>
+        }
+    }
+    else
+    {
+        <a href="/Auth" class="btn btn-primary btn-lg">Войти в систему</a>
+    }
+
+    <div class="mt-3">
+        <small class="text-muted">Тестовые логины: admin/admin (админ) или user/123 (сотрудник)</small>
+    </div>
+</div>
